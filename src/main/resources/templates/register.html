@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>家居销售系统</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="家居销售系统"/>
+
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+
+    <!-- css files -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.css}">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+
+<body>
+<!-- title -->
+<h1>
+    <span>F</span>urniture
+    <span>S</span>ale
+</h1>
+<!-- //title -->
+
+<!-- content -->
+<div class="sub-main-w3">
+    <form class="form" th:action="@{/sysUser/register}" method="post">
+        <fieldset>
+            <p class="legend">Register Here<i class="far fa-hand-point-down"></i></p>
+
+                <div>
+                    <!--/*@thymesVar id="error" type=""*/-->
+                    <span id="basic-addon0">&nbsp;</span>
+                    <span style="font-size: 23px;color: red" th:text="${error}" aria-describedby="basic-addon0"></span>
+                    <br />
+                </div>
+
+                <!--    登录名 -->
+                <div class="input">
+                    <input id="loginName" type="text" placeholder="LoginName" name="loginName" required />
+                    <span>
+						<i class="fas fa-phone"></i>
+					</span>
+                </div>
+                <!--    密码 -->
+                <div class="input">
+                    <input id="password" type="password" placeholder="Password" name="password" required />
+                    <span>
+						<i class="fas fa-lock"></i>
+					</span>
+                </div>
+                <!--    密码确认 -->
+                <div class="input">
+                    <input id="confirPassword" type="password" placeholder="ConfirPassword" name="confirPassword" required />
+                    <span>
+						<i class="fas fa-lock"></i>
+					</span>
+                </div>
+                <!--    用户姓名 -->
+                <div class="input">
+                    <input id="username" type="text" placeholder="Name" name="username" required />
+                    <span>
+						<i class="fas fa-user"></i>
+					</span>
+                </div>
+                <!--    电子邮箱 -->
+                <div class="input">
+                    <input id="email" type="email" placeholder="Email" name="email" required />
+                    <span>
+						<i class="fas fa-envelope"></i>
+					</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="align-content-sm-center">
+                        <input type="submit" value="Regis" class="btn btn-info"/>
+                    </div>
+                </div>
+
+        </fieldset>
+    </form>
+</div>
+<div class="footer">
+    <h2>&copy; 2019 Modish Login Form. All rights reserved | Design by Nelly</h2>
+</div>
+<script src="/js/jquery-2.2.3.min.js"></script>
+<!-- //Jquery -->
+<!-- script -->
+<script>
+    $(".input").focusin(function () {
+        $(this).find("span").animate({
+            "opacity": "0"
+        }, 200);
+    });
+
+    $(".input").focusout(function () {
+        $(this).find("span").animate({
+            "opacity": "1"
+        }, 300);
+    });
+
+</script>
+<!-- //script -->
+
+</body>
+
+</html>

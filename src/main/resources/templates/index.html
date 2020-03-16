@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>家居销售系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content="家居销售系统"/>
+
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <!--引入外部的bootstrap中的css文件-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!--jQuery文件务必在bootstrap.min.js之前引入-->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!--再引入bootstrap.min.js-->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+
+    <!-- css files -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.css}">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+
+<body>
+<!-- title -->
+<h1>
+    <span>F</span>urniture
+    <span>S</span>ale
+</h1>
+<!-- //title -->
+
+<!-- content -->
+<div class="sub-main-w3">
+    <form class="form" th:action="@{/sysUser/sign}" method="post">
+        <fieldset>
+            <p class="legend">Login Here<i class="far fa-hand-point-down"></i></p>
+                <div>
+                    <span id="basic-addon0">&nbsp;</span>
+                    <span style="font-size: 23px;color: red" th:text="${error}" aria-describedby="basic-addon0"></span>
+                    <br />
+                </div>
+                <!--    登录名 -->
+                <div class="input">
+                    <input id="loginName" type="text" placeholder="LoginName" name="loginName" required />
+                    <!--<input type="tel" placeholder="LoginName" name="loginName" required />-->
+                    <span>
+						<i class="fas fa-user"></i>
+					</span>
+                </div>
+                <!--    密码 -->
+                <div class="input">
+                    <input id="password" type="password" placeholder="Password" name="password" required />
+                    <!--<input type="password" placeholder="Password" name="password" required />-->
+                    <span>
+						<i class="fas fa-lock"></i>
+					</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="align-content-sm-center">
+                        <input type="submit" value="Sign" class="btn btn-info"/>
+                        &nbsp; &nbsp; &nbsp;
+                        <a th:href="@{/sysUser/toRegister}" class="btn btn-info">Regis</a>
+                        <!--<a th:href="@{/sysUser/test}" class="btn btn-info">test</a>-->
+                    </div>
+
+                </div>
+            <!--<div id="hidden" type="" class="alert alert-dismissible alert-danger">-->
+                <!--该用户不存在,请注册后登录-->
+                <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+
+        </fieldset>
+    </form>
+</div>
+<!-- //content -->
+
+<!-- copyright -->
+<div class="footer">
+    <h2>&copy; 2019 Modish Login Form. All rights reserved | Design by Nelly</h2>
+</div>
+<!-- //copyright -->
+
+
+<!-- Jquery -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- //Jquery -->
+<!-- script -->
+<script>
+    $(".input").focusin(function () {
+        $(this).find("span").animate({
+            "opacity": "0"
+        }, 200);
+    });
+
+    $(".input").focusout(function () {
+        $(this).find("span").animate({
+            "opacity": "1"
+        }, 300);
+    });
+
+    // $(".login").submit(function () {
+    // 	$(this).find(".submit i").removeAttr('class').addClass("fa fa-check").css({
+    // 		"color": "#fff"
+    // 	});
+    // 	$(".submit").css({
+    // 		"background": "#2ecc71",
+    // 		"border-color": "#2ecc71"
+    // 	});
+    // 	$(".feedback").show().animate({
+    // 		"opacity": "1",
+    // 		"bottom": "-80px"
+    // 	}, 400);
+    // 	$("input").css({
+    // 		"border-color": "#2ecc71"
+    // 	});
+    // 	return false;
+    // });
+</script>
+<!-- //script -->
+
+</body>
+
+</html>

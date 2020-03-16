@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+<div class="page-wrapper">
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    菜单管理      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;   <a th:href="@{/sysMenu/toInsert}"> 添加 </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>菜单名</th>
+                                <th>菜单地址</th>
+                                <th>父级ID</th>
+                                <th>菜单顺序</th>
+                                <th>菜单类型</th>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="dataTable" th:each="menu : ${page.list}">
+                                <td th:text="${menu.id}"></td>
+                                <td th:text="${menu.name}"></td>
+                                <td th:text="${menu.url}"></td>
+                                <td th:text="${menu.parentId}"></td>
+                                <td th:text="${menu.order}"></td>
+                                <td th:text="${menu.type}"></td>
+                                <td><a th:href="@{/sysMenu/toSelect(id=${menu.id})}"> 查看 </a><a th:href="@{/sysMenu/toUpdate(id=${menu.id})}"> 修改 </a><a th:href="@{/sysMenu/del(id=${menu.id})}"> 删除 </a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer no-margin-top">
+                    <div class="col-md-6">
+                        当前第 [[${page.pageNum}]]页,共 [[${page.pages}]] 页.一共 [[${page.total}]] 条记录
+                    </div>
+
+                    <ul class="pagination pull-right no-margin">
+                        <li th:if="${page.hasPreviousPage}">
+                            <a th:href="'/sysMenu/table?start=1'">首页</a>
+                        </li>
+
+                        <li class="prev" th:if="${page.hasPreviousPage}">
+                            <a th:href="'/sysMenu/table?start='+${page.prePage}">
+                                <i class="ace-icon fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <!--遍历条数-->
+                        <li th:each="nav:${page.navigatepageNums}">
+                            <a th:href="'/sysMenu/table?start='+${nav}" th:text="${nav}" th:if="${nav != page.pageNum}"></a>
+                            <span style="font-weight: bold;background: #6faed9;" th:if="${nav == page.pageNum}" th:text="${nav}" ></span>
+                        </li>
+
+
+                        <li class="next" th:if="${page.hasNextPage}">
+                            <a th:href="'/sysMenu/table?start='+${page.nextPage}">
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="'/sysMenu/table?start='+${page.pages}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

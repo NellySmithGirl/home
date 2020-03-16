@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    修改商品信息
+                </div>
+
+                <form class="form-horizontal" th:action="@{/manageGoods/update}" th:object="${good}" method="post">
+                    <input type="hidden" name="id" th:value="*{id}"/>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">商品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" th:value="*{name}"
+                                   placeholder="Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="price" id="price"  th:value="*{price}" placeholder="Price"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="picture" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="picture" id="picture" th:value="*{picture}" placeholder="Picture"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="details" class="col-sm-2 control-label">详情</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="details" id="details" th:value="*{details}" placeholder="Details"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Submit" class="btn btn-info"/>
+                            &nbsp; &nbsp; &nbsp;
+                            <a th:href="@{/manageGoods/table}" class="btn btn-info">Back</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

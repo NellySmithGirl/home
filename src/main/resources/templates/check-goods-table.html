@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    商品审核
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>商品</th>
+                                <th>物品</th>
+                                <th>审核人</th>
+                                <th>审核状态</th>
+                                <th>原因</th>
+                                <th>审核时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="dataTable" th:each="good : ${page.list}" th:switch="${good.status}">
+                                <td th:text="${good.name}"></td>
+                                <td th:text="${good.scopeName}"></td>
+                                <td th:text="${good.username}"></td>
+                                <!--<td th:value="${good.status}=='1'?'审核中':(${good.status}=='2'?'审核通过':'审核不通过')"></td>-->
+                                <td th:case="1">审核中</td>
+                                <td th:case="2">审核通过</td>
+                                <td th:case="3">审核不通过</td>
+                                <!--<td th:text="${good.status}=='1'?'审核中':'审核通过'"></td>-->
+                                <td th:text="${good.remark}"></td>
+                                <td th:text="${good.createTime}"></td>
+                                <td><a th:href="@{/checkGoods/toSelect(id=${good.id})}"> 审核 </a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer no-margin-top">
+                    <div class="col-md-6">
+                        当前第 [[${page.pageNum}]]页,共 [[${page.pages}]] 页.一共 [[${page.total}]] 条记录
+                    </div>
+
+                    <ul class="pagination pull-right no-margin">
+                        <li th:if="${page.hasPreviousPage}">
+                            <a th:href="'/checkGoods/table?start=1'">首页</a>
+                        </li>
+
+                        <li class="prev" th:if="${page.hasPreviousPage}">
+                            <a th:href="'/checkGoods/table?start='+${page.prePage}">
+                                <i class="ace-icon fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <!--遍历条数-->
+                        <li th:each="nav:${page.navigatepageNums}">
+                            <a th:href="'/checkGoods/table?start='+${nav}" th:text="${nav}" th:if="${nav != page.pageNum}"></a>
+                            <span style="font-weight: bold;background: #6faed9;" th:if="${nav == page.pageNum}" th:text="${nav}" ></span>
+                        </li>
+
+
+                        <li class="next" th:if="${page.hasNextPage}">
+                            <a th:href="'/checkGoods/table?start='+${page.nextPage}">
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="'/checkGoods/table?start='+${page.pages}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    添加商品信息
+                </div>
+
+                <form class="form-horizontal" th:action="@{/manageGoods/insert}"  enctype="multipart/form-data" method="post">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">商品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name"
+                                   placeholder="Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="scopeId" class="col-sm-2 control-label">物品</label>
+                        <div class="col-sm-10">
+                            <select id="scopeId" class="form-control select2" name="scopeId" required lay-verify="required">
+                                <span th:each="scope:${scopes}">
+                                    <option th:selected="${scope.id}" th:value="${scope.id}" >[[ ${scope.name} ]]</option>
+                                </span>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="price" id="price"  placeholder="Price"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="details" class="col-sm-2 control-label">详情</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="details" id="details"  placeholder="Details"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="请选择图片" type="file" id="photo" name="photo"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Submit" class="btn btn-info"/>
+                            &nbsp; &nbsp; &nbsp;
+                            <a th:href="@{/manageGoods/table}" class="btn btn-info">Back</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

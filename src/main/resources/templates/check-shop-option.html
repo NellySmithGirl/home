@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+
+<div class="page-wrapper">
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    商铺信息审核
+                </div>
+
+                <form class="form-horizontal" th:action="@{/checkShop/update}" th:object="${shop}" method="post">
+                    <input type="hidden" name="id" th:value="*{id}"/>
+                    <input type="hidden" name="checkId" th:value="*{checkId}"/>
+                    <div class="form-group">
+                        <label for="shopName" class="col-sm-2 control-label">商铺名</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="shopName" id="shopName" th:value="*{shopName}"
+                                   placeholder="ShopName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userName" class="col-sm-2 control-label">负责人</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="userName" id="userName" th:value="*{userName}"  placeholder="UserName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userMobile" class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="userMobile" id="userMobile" th:value="*{userMobile}"  placeholder="UserMobile"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addr" class="col-sm-2 control-label">商铺地址</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="addr" id="addr" th:value="*{addr}"  placeholder="Addr"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registTime" class="col-sm-2 control-label">注册时间</label>
+                        <div class="col-sm-10">
+                            <input readonly type="date" class="form-control" name="registTime" id="registTime" th:value="*{registTime}"  placeholder="RegistTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessLicense" class="col-sm-2 control-label">营业执照</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="businessLicense" id="businessLicense" th:value="*{businessLicense}"  placeholder="BusinessLicense"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status" class="col-sm-2 control-label">审核</label>
+                        <div class="col-sm-10">
+                            <select id="status" class="form-control" name="status" required lay-verify="required">
+                                    <option value="2">审核通过</option>
+                                    <option value="3">审核不通过</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remark" class="col-sm-2 control-label">审核备注</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="remark" id="remark"  placeholder="Remark"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Submit" class="btn btn-info"/>
+                            &nbsp; &nbsp; &nbsp;
+                            <a th:href="@{/checkShop/table}" class="btn btn-info">Back</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

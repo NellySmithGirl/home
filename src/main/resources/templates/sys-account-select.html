@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    查看个人账号信息
+                </div>
+
+                <form class="form-horizontal" th:object="${user}" method="post">
+                    <div class="form-group">
+                        <label for="loginName" class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="loginName" id="loginName" th:value="*{loginName}"
+                                   placeholder="LoginName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input readonly type="text" class="form-control" name="username" id="username" th:value="*{username}"  placeholder="username"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-10">
+                            <input readonly type="tel" class="form-control" name="mobile" id="mobile" th:value="*{mobile}"  placeholder="mobile"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input readonly type="email" class="form-control" name="email" id="email" th:value="*{email}" placeholder="email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastLoginTime" class="col-sm-2 control-label">上次登录时间</label>
+                        <div class="col-sm-10">
+                            <input readonly type="datetime" class="form-control" name="lastLoginTime" id="lastLoginTime" th:value="*{lastLoginTime}" placeholder="lastLoginTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            &nbsp; &nbsp; &nbsp;
+                            <a th:href="@{/sysUser/home}" class="btn btn-info">Back</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

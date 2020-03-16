@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+<div class="page-wrapper">
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    用户管理      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;   <a th:href="@{/sysUser/toInsert}"> 添加 </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>手机号</th>
+                                <th>邮箱</th>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="dataTable" th:each="user : ${page.list}">
+                                <td th:text="${user.id}"></td>
+                                <td th:text="${user.loginName}"></td>
+                                <td th:text="${user.username}"></td>
+                                <td th:text="${user.mobile}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td><a th:href="@{/sysUser/toSelect(id=${user.id})}"> 查看 </a><a th:href="@{/sysUser/toUpdate(id=${user.id})}"> 修改 </a><a th:href="@{/sysUser/del(id=${user.id})}"> 删除 </a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer no-margin-top">
+                    <div class="col-md-6">
+                        当前第 [[${page.pageNum}]]页,共 [[${page.pages}]] 页.一共 [[${page.total}]] 条记录
+                    </div>
+
+                    <ul class="pagination pull-right no-margin">
+                        <li th:if="${page.hasPreviousPage}">
+                            <a th:href="'/sysUser/table?start=1'">首页</a>
+                        </li>
+
+                        <li class="prev" th:if="${page.hasPreviousPage}">
+                            <a th:href="'/sysUser/table?start='+${page.prePage}">
+                                <i class="ace-icon fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <!--遍历条数-->
+                        <li th:each="nav:${page.navigatepageNums}">
+                            <a th:href="'/sysUser/table?start='+${nav}" th:text="${nav}" th:if="${nav != page.pageNum}"></a>
+                            <span style="font-weight: bold;background: #6faed9;" th:if="${nav == page.pageNum}" th:text="${nav}" ></span>
+                        </li>
+
+
+                        <li class="next" th:if="${page.hasNextPage}">
+                            <a th:href="'/sysUser/table?start='+${page.nextPage}">
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="'/sysUser/table?start='+${page.pages}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

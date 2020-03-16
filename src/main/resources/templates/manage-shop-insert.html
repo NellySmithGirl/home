@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    添加商铺信息
+                </div>
+
+                <form class="form-horizontal" th:action="@{/manageShop/insert}" enctype="multipart/form-data"  method="post">
+                    <div class="form-group">
+                        <label for="shopName" class="col-sm-2 control-label">商铺名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="shopName" id="shopName"
+                                   placeholder="ShopName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="scopeId" class="col-sm-2 control-label">物品</label>
+                        <div class="col-sm-10">
+                            <select id="scopeId" class="form-control custom-select" name="scopeId" required lay-verify="required">
+                                <span th:each="scope:${scopes}">
+                                    <option th:selected="${scope.id}" th:value="${scope.id}" >[[ ${scope.name} ]]</option>
+                                </span>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">负责人</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="username" id="username"  placeholder="UserName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userMobile" class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="userMobile" id="userMobile"  placeholder="UserMobile"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addr" class="col-sm-2 control-label">商铺地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="addr" id="addr"  placeholder="Addr"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registTime" class="col-sm-2 control-label">注册时间</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="registTime" id="registTime"  placeholder="RegistTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo" class="col-sm-2 control-label">营业执照</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="请选择营业执照" type="file" id="photo" name="photo"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Submit" class="btn btn-info"/>
+                            &nbsp; &nbsp; &nbsp;
+                            <a th:href="@{/manageShop/table}" class="btn btn-info">Back</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

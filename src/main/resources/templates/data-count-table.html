@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+<div class="page-wrapper">
+
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    人流量统计
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>商品</th>
+                                <th>日期</th>
+                                <th>客流量</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="dataTable" th:each="count : ${page.list}">
+                                <td th:text="${count.goodsId}"></td>
+                                <td th:text="${count.date}"></td>
+                                <td th:text="${count.count}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer no-margin-top">
+                    <div class="col-md-6">
+                        当前第 [[${page.pageNum}]]页,共 [[${page.pages}]] 页.一共 [[${page.total}]] 条记录
+                    </div>
+
+                    <ul class="pagination pull-right no-margin">
+                        <li th:if="${page.hasPreviousPage}">
+                            <a th:href="'/dataCount/table?start=1'">首页</a>
+                        </li>
+
+                        <li class="prev" th:if="${page.hasPreviousPage}">
+                            <a th:href="'/dataCount/table?start='+${page.prePage}">
+                                <i class="ace-icon fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <!--遍历条数-->
+                        <li th:each="nav:${page.navigatepageNums}">
+                            <a th:href="'/dataCount/table?start='+${nav}" th:text="${nav}" th:if="${nav != page.pageNum}"></a>
+                            <span style="font-weight: bold;background: #6faed9;" th:if="${nav == page.pageNum}" th:text="${nav}" ></span>
+                        </li>
+
+
+                        <li class="next" th:if="${page.hasNextPage}">
+                            <a th:href="'/dataCount/table?start='+${page.nextPage}">
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="'/dataCount/table?start='+${page.pages}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

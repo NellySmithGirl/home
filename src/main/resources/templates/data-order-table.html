@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: commonhead">
+</head>
+<!--<body class="sidebar-fixed header-fixed">-->
+<div class="page-wrapper">
+
+    <div th:replace="common :: topBar"></div>
+
+    <div class="main-container">
+        <div th:replace="common :: commonbody"></div>
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-light">
+                    月份统计
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>商品id</th>
+                                <th>经营物品id</th>
+                                <th>购买数量</th>
+                                <th>购买用户id</th>
+                                <th>备注</th>
+                                <th>创建时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="dataTable" th:each="order : ${page.list}">
+                                <td th:text="${order.goodsId}"></td>
+                                <td th:text="${order.scopeId}"></td>
+                                <td th:text="${order.buyCount}"></td>
+                                <td th:text="${order.userId}"></td>
+                                <td th:text="${order.remark}"></td>
+                                <td th:text="${order.createTime}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer no-margin-top">
+                    <div class="col-md-6">
+                        当前第 [[${page.pageNum}]]页,共 [[${page.pages}]] 页.一共 [[${page.total}]] 条记录
+                    </div>
+
+                    <ul class="pagination pull-right no-margin">
+                        <li th:if="${page.hasPreviousPage}">
+                            <a th:href="'/dataMonth/table?start=1'">首页</a>
+                        </li>
+
+                        <li class="prev" th:if="${page.hasPreviousPage}">
+                            <a th:href="'/dataMonth/table?start='+${page.prePage}">
+                                <i class="ace-icon fa fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <!--遍历条数-->
+                        <li th:each="nav:${page.navigatepageNums}">
+                            <a th:href="'/dataMonth/table?start='+${nav}" th:text="${nav}" th:if="${nav != page.pageNum}"></a>
+                            <span style="font-weight: bold;background: #6faed9;" th:if="${nav == page.pageNum}" th:text="${nav}" ></span>
+                        </li>
+
+
+                        <li class="next" th:if="${page.hasNextPage}">
+                            <a th:href="'/dataMonth/table?start='+${page.nextPage}">
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="'/dataMonth/table?start='+${page.pages}">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
